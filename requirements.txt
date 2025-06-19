@@ -1,0 +1,9 @@
+tensorflow==2.16.1
+torch==2.7.1
+google-generativeai
+diffusers
+accelerate
+scipy
+mediapipe
+transformers
+dotenv

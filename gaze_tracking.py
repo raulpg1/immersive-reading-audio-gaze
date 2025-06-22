@@ -1,5 +1,4 @@
 import os
-import ast
 import cv2
 import math
 import time
@@ -9,33 +8,7 @@ import mediapipe as mp
 from utils import read_text
 from utils import play_audio_with_xdg_open
 
-from dotenv import load_dotenv
-load_dotenv(".env")
-
-DATA_DIR = os.getenv("DATA_DIR")
-
-BLINK_THRESHOLD = float(os.getenv("BLINK_THRESHOLD"))
-RIGHT_THRESHOLD = float(os.getenv("RIGHT_THRESHOLD"))
-LEFT_THRESHOLD = float(os.getenv("LEFT_THRESHOLD"))
-
-BLACK = ast.literal_eval(os.getenv("BLACK"))
-WHITE = ast.literal_eval(os.getenv("WHITE"))
-BLUE = ast.literal_eval(os.getenv("BLUE"))
-RED = ast.literal_eval(os.getenv("RED"))
-GREEN = ast.literal_eval(os.getenv("GREEN"))
-
-RIGHT_EYE_INNER_CORNER = int(os.getenv("RIGHT_EYE_INNER_CORNER"))
-RIGHT_EYE_OUTER_CORNER = int(os.getenv("RIGHT_EYE_OUTER_CORNER"))
-LEFT_EYE_INNER_CORNER = int(os.getenv("LEFT_EYE_INNER_CORNER"))
-LEFT_EYE_OUTER_CORNER = int(os.getenv("LEFT_EYE_OUTER_CORNER"))
-
-RIGHT_EYE_TOP_LID = int(os.getenv("RIGHT_EYE_TOP_LID"))
-RIGHT_EYE_BOTTOM_LID = int(os.getenv("RIGHT_EYE_BOTTOM_LID"))
-LEFT_EYE_TOP_LID = int(os.getenv("LEFT_EYE_TOP_LID"))
-LEFT_EYE_BOTTOM_LID = int(os.getenv("LEFT_EYE_BOTTOM_LID"))
-
-RIGHT_IRIS_POINTS = ast.literal_eval(os.getenv("RIGHT_IRIS_POINTS"))
-LEFT_IRIS_POINTS = ast.literal_eval(os.getenv("LEFT_IRIS_POINTS"))
+from config import DATA_DIR, BLINK_THRESHOLD, RIGHT_THRESHOLD, LEFT_THRESHOLD, BLACK, WHITE, BLUE, RED, GREEN, RIGHT_EYE_INNER_CORNER, RIGHT_EYE_OUTER_CORNER, LEFT_EYE_INNER_CORNER, LEFT_EYE_OUTER_CORNER, RIGHT_EYE_TOP_LID, RIGHT_EYE_BOTTOM_LID, LEFT_EYE_TOP_LID, LEFT_EYE_BOTTOM_LID, RIGHT_IRIS_POINTS, LEFT_IRIS_POINTS
 
 def colorBackgroundText(img, text, font, fontScale, textPos, textThickness=1, textColor=(0, 255, 0), bgColor=(0, 0, 0), pad_x=3, pad_y=3):
     (t_w, t_h), _ = cv2.getTextSize(text, font, fontScale, textThickness)

@@ -2,12 +2,9 @@ import re
 import os
 import json
 import google.generativeai as genai
+from config import MODEL_NAME
 from langchain_core.language_models import LLM
 
-from dotenv import load_dotenv
-load_dotenv(".env")
-
-MODEL_NAME = os.getenv("MODEL_NAME")
 
 class GeminiLLM(LLM):
     model_name: str = MODEL_NAME

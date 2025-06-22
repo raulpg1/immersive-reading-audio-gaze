@@ -1,12 +1,9 @@
 import os
+import json
 from gaze_tracking import run_gaze_tracking
 from utils import generate_audioldm, read_text
 from chains.audio_chain import create_audio_chain
-import json
-from dotenv import load_dotenv
-load_dotenv(".env")
-DATA_DIR = os.getenv("DATA_DIR")
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+from config import GOOGLE_API_KEY, DATA_DIR
 
 def main():
     prompt_file_name = "audio_prompt_encoder.txt"

@@ -9,11 +9,7 @@ import scipy
 import subprocess
 from diffusers import AudioLDMPipeline
 
-from dotenv import load_dotenv
-load_dotenv(".env")
-
-AUDIO_OUTPUT_PATH = os.getenv("AUDIO_OUTPUT_PATH")
-AUDIO_LDM_MODEL = os.getenv("AUDIO_LDM_MODEL")
+from config import AUDIO_OUTPUT_PATH, AUDIO_LDM_MODEL
     
 def generate_audioldm(prompt_struct):
     pipe = AudioLDMPipeline.from_pretrained(AUDIO_LDM_MODEL, torch_dtype=torch.float16)

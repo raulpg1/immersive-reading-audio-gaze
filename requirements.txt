@@ -7,3 +7,5 @@ scipy
 mediapipe
 transformers
 dotenv
+langchain
+langchain-community

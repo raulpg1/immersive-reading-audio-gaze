@@ -1,17 +1,22 @@
 import os
 import sys
+
 os.environ['GLOG_minloglevel'] = '3'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 sys.stderr = open(os.devnull, 'w')
 
 import torch
 import scipy
+import shutil
 import subprocess
 from diffusers import AudioLDMPipeline
 
 from config import AUDIO_OUTPUT_PATH, AUDIO_LDM_MODEL
-    
 def generate_audioldm(prompt_struct):
+
+    shutil.rmtree(AUDIO_OUTPUT_PATH)
+    os.makedirs(AUDIO_OUTPUT_PATH)
+
     pipe = AudioLDMPipeline.from_pretrained(AUDIO_LDM_MODEL, torch_dtype=torch.float16)
     pipe = pipe.to("cuda")
 

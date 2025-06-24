@@ -9,7 +9,7 @@ def main():
     prompt_file_name = "audio_prompt_encoder.txt"
     chain = create_audio_chain(api_key=GOOGLE_API_KEY, prompt_path=os.path.join(DATA_DIR,prompt_file_name))
 
-    page_file_name = "page.txt"
+    page_file_name = "full_page.txt"
     page_file_path = read_text(os.path.join(DATA_DIR,page_file_name))
     
     procesado = {}

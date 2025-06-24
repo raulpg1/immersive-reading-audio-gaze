@@ -169,7 +169,7 @@ def run_gaze_tracking(page_file_name):
                 text_color = WHITE
                 bg_color = BLACK
                 
-            colorBackgroundText(frame, final_gaze_direction, cv2.FONT_HERSHEY_COMPLEX, 1, (img_w // 2 - 100, 50), 2, text_color, bg_color, 10, 10)
+            colorBackgroundText(frame, final_gaze_direction, cv2.FONT_HERSHEY_COMPLEX, 0.75, (img_w // 2 - 100, 200), 2, text_color, bg_color, 10, 10)
 
             time.sleep(0.1)
             cv2.imshow("Eye Gaze Tracking", frame)

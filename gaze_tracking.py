@@ -68,7 +68,7 @@ def estimate_gaze_direction(mesh_coor, iris_center, inner_corner_idx, outer_corn
 
 def run_gaze_tracking(page_file_name): 
     
-    page_file_path = read_text(os.path.join(DATA_DIR, page_file_name))
+    page_file_path = read_text(os.path.join(DATA_DIR, "text",page_file_name))
     page_dict = {}
     line = 0
     for parrafo in page_file_path.split("\n\n"):

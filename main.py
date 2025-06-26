@@ -7,10 +7,10 @@ from config import GOOGLE_API_KEY, DATA_DIR
 
 def main():
     prompt_file_name = "audio_prompt_encoder.txt"
-    chain = create_audio_chain(api_key=GOOGLE_API_KEY, prompt_path=os.path.join(DATA_DIR,prompt_file_name))
+    chain = create_audio_chain(api_key=GOOGLE_API_KEY, prompt_path=os.path.join(DATA_DIR,"prompt",prompt_file_name))
 
     page_file_name = "full_page.txt"
-    page_file_path = read_text(os.path.join(DATA_DIR,page_file_name))
+    page_file_path = read_text(os.path.join(DATA_DIR,"text",page_file_name))
     
     procesado = {}
     for i,parrafo in enumerate(page_file_path.split("\n\n")):

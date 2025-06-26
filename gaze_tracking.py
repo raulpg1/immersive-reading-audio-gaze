@@ -68,7 +68,7 @@ def estimate_gaze_direction(mesh_coor, iris_center, inner_corner_idx, outer_corn
 
 def run_gaze_tracking(page_file_name): 
     
-    page_file_path = read_text(os.path.join(DATA_DIR, page_file_name))
+    page_file_path = read_text(os.path.join(DATA_DIR, "text",page_file_name))
     page_dict = {}
     line = 0
     for parrafo in page_file_path.split("\n\n"):
@@ -88,6 +88,7 @@ def run_gaze_tracking(page_file_name):
     line_jump_detected = False
     line_count = 1
     show_first_line = True
+    final_gaze_direction = "CENTER"
 
     with mp_face_mesh.FaceMesh(
         max_num_faces=1,
@@ -105,12 +106,12 @@ def run_gaze_tracking(page_file_name):
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             results = face_mesh.process(rgb_frame)
 
-            final_gaze_direction = "LOOKING AROUND" # Estado predeterminado
-
-            if show_first_line:
-                print(f"Reading line {line_count} -> {page_dict[line_count]}")
+            if show_first_line and (final_gaze_direction != "CENTER" and final_gaze_direction != "BLINKING" and final_gaze_direction != "CLOSED" ):
+                print(f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReading line {line_count} -> {page_dict[line_count]}")
                 play_audio_with_xdg_open(line_count)
                 show_first_line = False
+
+            # final_gaze_direction = "CENTER"
 
             if results.multi_face_landmarks:
                 mesh_coor = get_mesh_coordinates(img_h, img_w, results)
@@ -140,7 +141,7 @@ def run_gaze_tracking(page_file_name):
                                 line_jump_detected = False  # Se permite detectar nuevo salto
                         elif gaze_right_eye == "LEFT" and gaze_left_eye == "LEFT":
                             final_gaze_direction = "LEFT"
-                            if right_phase_active and not line_jump_detected:
+                            if right_phase_active and not line_jump_detected and not show_first_line:
                                 line_count += 1
                                 # print("Salto de línea detectado. Total líneas leídas:", line_count)
                                 print(f"Reading line {line_count} -> {page_dict[line_count]}")
@@ -148,7 +149,7 @@ def run_gaze_tracking(page_file_name):
                                 line_jump_detected = True
                                 right_phase_active = False  # Reset para esperar nuevo ciclo
                         else:
-                            final_gaze_direction = "LOOKING AROUND"
+                            final_gaze_direction = "CENTER"
                     elif right_eye_closed and left_eye_closed:
                         final_gaze_direction = "CLOSED" # Ambos ojos cerrados
                     elif right_eye_closed or left_eye_closed:
@@ -169,10 +170,11 @@ def run_gaze_tracking(page_file_name):
                 text_color = WHITE
                 bg_color = BLACK
                 
-            colorBackgroundText(frame, final_gaze_direction, cv2.FONT_HERSHEY_COMPLEX, 0.75, (img_w // 2 - 100, 200), 2, text_color, bg_color, 10, 10)
+            colorBackgroundText(frame, final_gaze_direction, cv2.FONT_HERSHEY_COMPLEX, 0.5, (img_w // 2 - 75, 200), 1, text_color, bg_color, 10, 10)
 
             time.sleep(0.1)
             cv2.imshow("Eye Gaze Tracking", frame)
+            cv2.moveWindow("Eye Gaze Tracking", 0, 470)
             if cv2.waitKey(5) & 0xFF == ord('q'):
                 break
 
@@ -180,4 +182,4 @@ def run_gaze_tracking(page_file_name):
     cv2.destroyAllWindows()
 
     time.sleep(2)
-    print("La lectura del texto ha finalizado.")
+    print("\n The page has been read successfully.")

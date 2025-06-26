@@ -2,19 +2,20 @@
 Este proyecto implementa un sistema de lectura inmersiva que sincroniza la narración escrita con sonidos generados dinámicamente, en función del contenido del texto y la mirada del lector. Utiliza generación de audio a través de AudioLDM, construcción contextual de prompts mediante Gemini (Google) y seguimiento ocular en tiempo real para mejorar la experiencia inmersiva del lector.
 
 ## 🚀 Características Principales
-🎧 Audio Generativo Inmersivo con AudioLDM, usando prompts acústicamente detallados.
-🤖 Generación Inteligente de Prompts mediante Gemini y LangChain, con reglas estrictas de calidad y relevancia.
-👁 Gaze Tracking para sincronizar reproducción sonora según la línea de lectura activa.
-🔗 Integración modular y fácilmente escalable, con procesamiento por párrafos y líneas.
+- 🎧 Audio Generativo Inmersivo con AudioLDM, usando prompts acústicamente detallados.
+- 🤖 Generación Inteligente de Prompts mediante Gemini y LangChain, con reglas estrictas de calidad y relevancia.
+- 👁 Gaze Tracking para sincronizar reproducción sonora según la línea de lectura activa.
+- 🔗 Integración modular y fácilmente escalable, con procesamiento por párrafos y líneas.
 
 ## 🧠 Arquitectura del Sistema
-Entrada: Texto narrativo dividido por párrafos y líneas.
-Análisis: Cada línea es evaluada por Gemini, que genera (si es relevante) un prompt de audio inmersivo siguiendo un set estricto de criterios.
-Generación: Los prompts se envían a AudioLDM para producir los sonidos.
-Sincronización: Un sistema de eye tracking detecta la posición de lectura del usuario y reproduce el audio correspondiente en tiempo real.
+- Entrada: Texto narrativo dividido por párrafos y líneas.
+- Análisis: Cada línea es evaluada por Gemini, que genera (si es relevante) un prompt de audio inmersivo siguiendo un set estricto de criterios.
+- Generación: Los prompts se envían a AudioLDM para producir los sonidos.
+- Sincronización: Un sistema de eye tracking detecta la posición de lectura del usuario y reproduce el audio correspondiente en tiempo real.
 
 ## 🧩 Componentes Técnicos
 📝 Prompt Engineering con LangChain y Gemini
+
 Se ha diseñado cuidadosamente un prompt base especializado que guía a Gemini para generar solo sonidos estrictamente justificados según el contenido narrativo.
 
 Características del diseño del prompt:
@@ -39,7 +40,8 @@ Ejemplo de Output:
 ]
 ```
 
-🧪 Pipeline Principal
+## 🧪 Pipeline Principal
+
 El archivo main.py ejecuta el flujo completo:
 - Carga el texto narrativo desde archivo.
 - Divide por párrafos y analiza cada uno con audio_chain.

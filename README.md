@@ -46,7 +46,7 @@ El archivo main.py ejecuta el flujo completo:
 - Carga el texto narrativo desde archivo.
 - Divide por párrafos y analiza cada uno con audio_chain.
 - Genera audios con AudioLDM desde los prompts.
-- Inicia el sistema de gaze tracking y reproduce los sonidos sincronizados.
+- Inicia el sistema de gaze tracking y reproduce los sonidos sincronizados con la línea que se está leyendo.
 
 ## Ejecutar con el comando
 python main.py 2>/dev/null
